@@ -166,8 +166,8 @@ option('dbus',
 
 option('wayland',
     type : 'feature',
-    value : 'auto',
-    description : 'Enable/disable wayland support')
+    value : 'enabled',
+    description : 'Enable/disable wayland support (enabled by default)')
 
 option('x11',
     type : 'feature',
