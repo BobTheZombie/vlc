@@ -24,6 +24,12 @@ A typical way to configure VLC is:
 
 See `./configure --help' for more information.
 
+Native Wayland output is enabled by default when building on systems with the
+Wayland development packages installed. Configure will fail if the Wayland
+client, cursor, EGL, scanner and protocol dependencies are missing; pass
+`--disable-wayland` to build without native Wayland support on X11-only
+systems.
+
 If you intend to debug stuff, you may want to compile with debugging
 symbols:
 

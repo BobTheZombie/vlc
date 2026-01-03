@@ -3487,7 +3487,9 @@ dnl
 dnl  Wayland
 dnl
 AC_ARG_ENABLE([wayland],
-  AS_HELP_STRING([--enable-wayland], [Wayland support (default auto)]))
+  AS_HELP_STRING([--enable-wayland], [Wayland support (default yes)]),
+  [],
+  [enable_wayland=yes])
 
 have_wayland="no"
 AS_IF([test "${enable_wayland}" != "no"], [
