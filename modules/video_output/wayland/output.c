@@ -194,6 +194,7 @@ struct wl_output *output_create(struct output_list *ol,
     od->name = NULL;
     od->description = NULL;
 
+    wl_output_set_user_data(wo, od);
     wl_output_add_listener(wo, &wl_output_cbs, od);
     wl_list_insert(&ol->outputs, &od->node);
     return wo;
@@ -214,6 +215,7 @@ void output_destroy(struct output_list *ol, struct wl_output *wo)
     }
 
     wl_list_remove(&od->node);
+    wl_output_set_user_data(od->wl_output, NULL);
 
     if (od->version >= WL_OUTPUT_RELEASE_SINCE_VERSION)
         wl_output_release(od->wl_output);
@@ -246,7 +248,7 @@ struct wl_output *output_find_by_name(struct output_list *ol, const char *name)
     struct output_data *od;
 
     wl_list_for_each(od, list, node)
-        if (strcmp(od->name, name) == 0)
+        if (od->name != NULL && strcmp(od->name, name) == 0)
             return od->wl_output;
 
     return NULL;
